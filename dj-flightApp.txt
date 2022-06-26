@@ -1,0 +1,16 @@
+1-env kuruldu
+2-env active edildi
+3-pip instal djangorestframework açıklama =>(pip install django demeye gerek yok çünkü sadece rest-framework kullanılacak projede-django kurulmuş oluyor)
+4-python.exe -m pip install --upgrade pip açıklama => (pip update edildi)
+5-pip freeze > requirements.txt  açıklama => yüklediğim dosyaları txt dosyasına atarak  başka developer ların ne yapması gerektiğini anlamasına yardımcı oluyoruz, yada projede ne kullandığımıza hatırlıyoruz sonradan.
+6- django-admin startproject main . ( proje ismi main olarak konuldu)
+7-INSTALLED_APPS 'e "rest_framework" olarak eklendi(Not:burda liste elemanları olduğu için virgüllere dikkat etmek gerekiyor!)
+8-py manage.py runserver yaparak server'ı çalıştırıyoruz ve roketi görüyoruz browser'da.
+9-BRD document inceleme(product backlog)
+10-ERD hazırlama (Entity relational Database) (drawsql.app linkinden hazırlanır)
+11-pip install python-decouple yükledik(secret_key i .env dosyasına atmak için => "from decouple import config" settings.py da import ediyoruz)
+12-git init(repository başlatma)
+13-git status(eklediğimiz dosyaları kırmızı renkte görürüz)
+14-git add . (hepsini birden göndermek için nokta koyuyoruz ancak sadece bir dosya göndermek isteseydik o dosyanın ismini yazardık)
+15-
+
