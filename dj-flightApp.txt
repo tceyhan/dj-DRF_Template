@@ -9,8 +9,67 @@
 9-BRD document inceleme(product backlog)
 10-ERD hazırlama (Entity relational Database) (drawsql.app linkinden hazırlanır)
 11-pip install python-decouple yükledik(secret_key i .env dosyasına atmak için => "from decouple import config" settings.py da import ediyoruz)
-12-git init(repository başlatma)
-13-git status(eklediğimiz dosyaları kırmızı renkte görürüz)
-14-git add . (hepsini birden göndermek için nokta koyuyoruz ancak sadece bir dosya göndermek isteseydik o dosyanın ismini yazardık)
-15-
+12-"git init"(repository başlatma)
+13-"git status"(eklediğimiz dosyaları kırmızı renkte görürüz)
+14-"git add ." (hepsini birden göndermek için nokta koyuyoruz ancak sadece bir dosya göndermek isteseydik o dosyanın ismini yazardık)
+15-git restore <file> yaparak  unstage yaptığımız file  tamamen geri çekmiş oluruz.
+16-"git commit -m 'initial commit'" (50 karakter sınırı var başlık için-anlamlı bir commit yazmak önemli-hangi feature eklediysek onu yazmak best practise)
+17-github ta repo oluşturuyoruz.
+18-branch main dönüştürmemizi istiyor github (çünkü master köleliği çağrıştırdığı için etik anlamı var)
+19-"git branch -M main" kodu ile master olan branchname main olur. vscode sol altta görebilirsin.
+20-"git remote add origin https://github.com/tceyhan/dj-DRF_Template.git"  ile localim ile repom arasında bağlantı kurmuş oluyorum.Push ettiğimde artık nereye gideceğini biliyor dosyalarım.
+21-"git push --set-upstream origin main" veya "git push -u origin main" ile push ederiz.
+22-developerların  dokümantasyonu ve  API dizayn etmesini kolaylaştırmaya yaryan swagger eklenir.
+23-https://drf-yasg.readthedocs.io/en/stable/readme.html swagger document.
+24-"pip install drf-yasg"  ile swagger ekle
+25-INSTALLED_APPS 'e 'drf_yasg' şeklinde eklendi.
+26-
+"""başlagıç projedeki urls.py kısmı aşağıdaki gibi olacak"""
+from django.contrib import admin
+from django.urls import path
+
+# Three modules for swagger:
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Flight Reservation API",
+        default_version="v1",
+        description="Flight Reservation API project provides flight and reservation info",
+        terms_of_service="#",
+        contact=openapi.Contact(email="55tc155@gmail.com"),  # Change e-mail on this line!
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
+)
+
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+
+    # Url paths for swagger:
+    path("swagger(<format>\.json|\.yaml)", schema_view.without_ui(cache_timeout=0), name="schema-json"),
+    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+]
+"""bitti"""
+27-py manage.py runserver yapıp => http://127.0.0.1:8000/swagger/ bu şekilde kontrol edebiliriz.
+28-swagger bize dökümanı hazırlamamızı ve güncel tutmamızı sağlıyor, küçük testler sağlıyor request, response vb.,
+planlama açısından projeyi özetliyor bir nevi.
+29-"pip install django-debug-toolbar" ile toolbar ekliyoruz
+30-INSTALLED_APPS'e "debug_toolbar",  ekliyoruz.
+31-middleware kısmında "debug_toolbar.middleware.DebugToolbarMiddleware", eklenir.
+32-urls.py'da include import ederek "path('__debug__/', include('debug_toolbar.urls')), " ekliyoruz,
+33-settings.py en sona ekliyoruz :
+"""başlangıç"""
+INTERNAL_IPS = [ 
+    "127.0.0.1", 
+]
+"""bitiş"""
+
+34-
 
